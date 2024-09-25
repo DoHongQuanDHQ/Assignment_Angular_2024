@@ -1,0 +1,21 @@
+<!-- <p *ngIf="product">Title: {{ product.title }}</p> -->
+@if(product) {
+<div class="container">
+  <h1 class="text-center my-2">Product Detail</h1>
+  <div class="row">
+    <div class="col">
+      <img [src]="product.image" class="card-img-top" />
+    </div>
+    <div class="col">
+      <h2>{{ product.title }}</h2>
+      <p class="card-text">
+        {{ product.description }}
+      </p>
+      <p class="card-text">Price: {{ product.price }} VND</p>
+    </div>
+  </div>
+</div>
+} @else {
+<h3>Product Not Found</h3>
+}
+<!-- product && (...) -->
