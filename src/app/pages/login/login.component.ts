@@ -13,7 +13,7 @@ import {
   standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css',
+  styleUrls: ['./login.component.css'], // Sửa lỗi ở đây: 'styleUrl' => 'styleUrls'
 })
 export class LoginComponent {
   authService = inject(AuthService);
@@ -28,14 +28,19 @@ export class LoginComponent {
   });
 
   handleLogin() {
-    // console.log(this.loginForm.controls['email'].errors?.['required']);
     console.log(this.loginForm);
 
     this.authService.loginUser(this.loginForm.value).subscribe({
       next: (data) => {
-        // luu token vao locaStorgae
-        localStorage.setItem('token', data.accessToken);
-        this.router.navigateByUrl('/');
+        // Lưu token và vai trò vào auth service
+        this.authService.setAuth(data.token, data.role); // Lưu token và vai trò từ phản hồi
+
+        // Điều hướng dựa trên vai trò
+        if (this.authService.isUserAdmin()) {
+          this.router.navigateByUrl('/admin'); // Điều hướng đến trang admin nếu là admin
+        } else {
+          this.router.navigateByUrl('/'); // Điều hướng đến trang chính
+        }
       },
       error: () => alert('Error'),
     });

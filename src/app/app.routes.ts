@@ -9,11 +9,15 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { adminGuard } from './admin/guard.guard';
 
 export const routes: Routes = [
-  { path: 'admin', component: DashboardComponent, canActivate: [adminGuard] },
   {
     path: '',
     component: ClientLayoutComponent,
     children: [
+      {
+        path: 'admin',
+        component: DashboardComponent,
+        canActivate: [adminGuard],
+      },
       { path: '', component: HomepageComponent },
       { path: 'about', component: AboutComponent },
       { path: 'product/:id', component: ProductDetailComponent },
