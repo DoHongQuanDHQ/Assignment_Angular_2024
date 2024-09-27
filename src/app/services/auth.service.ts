@@ -4,11 +4,12 @@ import { inject, Injectable } from '@angular/core';
 export type User = {
   email: string;
   password: string;
+  role: string;
 };
 
 type LoginResponse = {
-  token: string;
-  role: string; // Thêm vai trò vào phản hồi
+  accessToken: string;
+  user: User; // Thêm vai trò vào phản hồi
 };
 
 @Injectable({
@@ -29,20 +30,16 @@ export class AuthService {
   }
 
   // Phương thức để lưu trữ token và vai trò người dùng
-  setAuth(token: string, role: string) {
-    this.token = token; // Lưu token
-    this.userRole = role; // Lưu vai trò người dùng
-    localStorage.setItem('token', token); // Lưu token vào localStorage (nếu cần thiết)
-  }
 
   // Phương thức để lấy token
-  getToken(): string | null {
-    return this.token || localStorage.getItem('token'); // Trả về token hoặc từ localStorage
-  }
 
   // Phương thức kiểm tra xem người dùng có phải là admin hay không
-  isUserAdmin(): boolean {
+  isAdmin(): boolean {
+    const user = this.getUser();
     return this.userRole === 'admin'; // Kiểm tra vai trò
+  }
+  getUser(): any {
+    return JSON.parse(localStorage.getItem('user') || '{}');
   }
 
   // Phương thức để xóa thông tin xác thực khi người dùng đăng xuất

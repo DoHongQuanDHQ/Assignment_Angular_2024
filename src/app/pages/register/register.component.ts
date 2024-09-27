@@ -17,6 +17,7 @@ export class RegisterComponent {
   registerForm: FormGroup = new FormGroup({
     email: new FormControl(''),
     password: new FormControl(''),
+    role: new FormControl('user'),
   });
 
   handleRegister() {

@@ -1,1 +1,260 @@
 /* You can add global styles to this file, and also import other style files */
+/* Tối ưu hóa các card */
+
+/* Header */
+
+.navbar {
+    background-color: #e1ebe2;
+    /* Màu nền */
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    /* Kích thước chữ cho logo */
+    font-weight: bold;
+    /* Đậm chữ */
+    color: #007bff;
+    /* Màu chữ cho logo */
+}
+
+.navbar-nav .nav-link {
+    color: #343a40;
+    /* Màu chữ cho các liên kết */
+    font-weight: 500;
+    /* Đậm chữ */
+}
+
+.navbar-nav .nav-link:hover {
+    color: #0056b3;
+    /* Màu chữ khi hover */
+}
+
+.navbar-nav .nav-item.active .nav-link {
+    color: #0056b3;
+    /* Màu chữ cho mục đang hoạt động */
+    font-weight: bold;
+    /* Đậm chữ cho mục đang hoạt động */
+}
+
+.navbar-toggler {
+    border: none;
+    /* Bỏ biên cho nút toggle */
+}
+
+.navbar-toggler-icon {
+    background-color: #007bff;
+    /* Màu nền cho icon toggle */
+}
+
+/* Cố định chiều cao cho navbar */
+.navbar {
+    min-height: 60px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .navbar-collapse {
+        background-color: #f8f9fa;
+        /* Màu nền cho navbar khi mở trên mobile */
+    }
+}
+
+/* Kết thúc Header */
+/*  */
+/* Home */
+
+.textchu {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 40px;
+    font-weight: bold;
+    color: black;
+}
+
+.card {
+    transition: transform 0.3s ease;
+    /* Hiệu ứng chuyển đổi khi di chuột */
+    height: 100%;
+    /* Chiều cao card sẽ lấp đặc báo */
+    display: flex;
+    flex-direction: column;
+    /* Trả về mô tả nguyên vẹn */
+    background-color: #fff;
+    /* Màu văn bản */
+    border-radius: 5px;
+    /* Bo tròn các góc của ảnh */
+}
+
+.card:hover {
+    transform: scale(1.05);
+    /* Phóng to thẻ khi di chuột */
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    /* Chiều cao card body sẽ lấp đầy khoảng cách còn lại */
+}
+
+.card-img-top {
+    height: auto;
+    /* Đặt chiều cao tự động */
+    max-height: 250px;
+    /* Thiết lập chiều cao tối đa */
+    width: 100%;
+    /* Đảm bảo ảnh chiếm toàn bộ chiều rộng của card */
+    object-fit: cover;
+    /* Cắt ảnh sao cho không bị biến dạng */
+    border-radius: 5px;
+    /* Góc bo tròn cho ảnh */
+}
+
+.spinner-border {
+    width: 3rem;
+    height: 3rem;
+    color: #007bff;
+    /* Màu spinner */
+}
+
+.card-title {
+    font-weight: bold;
+    /* Làm đậm tiêu đề sản phẩm */
+    color: #333;
+    /* Màu tiêu đề */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+}
+
+.card-text {
+    color: #555;
+    /* Màu văn bản mô tả */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 3;
+}
+
+
+
+.btn {
+    padding: 5px 7px;
+    /* Padding cho nút */
+    font-size: 15px;
+    /* Kích thước chữ */
+    border-radius: 5px;
+    /* Bo tròn cạnh */
+    text-align: center;
+    /* Căn giữa chữ */
+    display: inline-block;
+    /* Để chúng là nút chứ không phải một phần tử block */
+    transition: background-color 0.3s ease;
+    /* Hiệu ứng chuyển màu khi hover */
+}
+
+.btn-primary {
+    background-color: #007bff;
+    /* Màu nền cho nút "Xem sản phẩm" */
+    color: white;
+    /* Màu chữ cho nút "Xem sản phẩm" */
+    border: none;
+    /* Không có viền */
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    /* Màu nền cho nút "Thêm giỏ hàng" */
+    color: black;
+    /* Màu chữ cho nút "Thêm giỏ hàng" */
+    border: none;
+    /* Không có viền */
+}
+
+/* Hiệu ứng hover */
+.btn-primary:hover {
+    background-color: limegreen;
+    /* Màu nền khác khi hover */
+}
+
+.btn-warning:hover {
+    background-color: red;
+    /* Màu nền khác khi hover */
+}
+
+/* CSS cho nút nằm ngang */
+.mt-auto.d-flex {
+    display: flex;
+    /* Thiết lập Flexbox */
+    justify-content: space-between;
+    /* Giúp hai nút nằm ở hai đầu */
+    margin-top: auto;
+    /* Đẩy chúng xuống dưới cùng của thẻ sản phẩm */
+}
+
+.container2 {
+    max-width: 400px;
+    /* Giới hạn chiều rộng của container */
+    margin: 50px auto;
+    /* Căn giữa container */
+    padding: 20px;
+    /* Thêm khoảng cách bên trong cho container */
+    border-radius: 10px;
+    /* Bo tròn góc cho container */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    /* Đổ bóng cho container */
+    background-color: #f8f9fa;
+    /* Màu nền cho container */
+}
+
+.container2 h1 {
+    color: #333;
+    /* Màu chữ tiêu đề */
+}
+
+.form {
+    margin-bottom: 20px;
+    /* Khoảng cách giữa các trường form */
+}
+
+.form-label {
+    font-weight: bold;
+    /* Chữ đậm cho nhãn */
+    color: #555;
+    /* Màu chữ cho nhãn */
+}
+
+.form-control {
+    border-radius: 5px;
+    /* Bo tròn góc cho ô nhập */
+    border: 1px solid #ced4da;
+    /* Đường viền cho ô nhập */
+    transition: border-color 0.3s;
+    /* Hiệu ứng chuyển đổi đường viền */
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    /* Đổi màu viền khi ô nhập được chọn */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    /* Hiệu ứng bóng khi chọn */
+}
+
+.btn-danger {
+    width: 100%;
+    /* Chiều rộng nút đầy đủ */
+    background-color: #dc3545;
+    /* Màu nền chính của nút */
+    border: none;
+    /* Ẩn đường viền */
+    border-radius: 5px;
+    /* Bo tròn góc cho nút */
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    /* Màu nền khi hover vào nút */
+}

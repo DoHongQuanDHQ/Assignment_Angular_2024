@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 import { Product, ProductService } from '../../services/product.service';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { HeaderComponent } from './../../components/header/header.component';
 
 @Component({
-  selector: 'app-dashboard',
+  selector: 'app-admin',
   standalone: true,
   imports: [CommonModule, RouterModule],
-  templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css',
+  templateUrl: './admin.component.html',
+  styleUrl: './admin.component.css',
 })
-export class DashboardComponent implements OnInit {
+export class AdminComponent {
   products: Product[] = [];
   constructor(private productService: ProductService) {}
 

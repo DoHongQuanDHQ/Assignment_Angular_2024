@@ -1,6 +1,34 @@
+// import { Component, inject } from '@angular/core';
+// import { AuthService } from '../../services/auth.service';
+// import { Router } from '@angular/router';
+// import {
+//   FormControl,
+//   FormGroup,
+//   ReactiveFormsModule,
+//   Validators,
+// } from '@angular/forms';
+
+// @Component({
+//   selector: 'app-login',
+//   standalone: true,
+//   imports: [ReactiveFormsModule],
+//   templateUrl: './login.component.html',
+//   styleUrls: ['./login.component.css'], // Sửa lỗi ở đây: 'styleUrl' => 'styleUrls'
+// })
+// export class LoginComponent {
+//   authService = inject(AuthService);
+//   router = inject(Router);
+
+//   loginForm: FormGroup = new FormGroup({
+//     email: new FormControl('', [Validators.required, Validators.email]),
+//     password: new FormControl('', [
+//       Validators.required,
+//       Validators.minLength(6),
+//     ]),
+//   });
+
+// }
 import { Component, inject } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
 import {
   FormControl,
   FormGroup,
@@ -8,17 +36,17 @@ import {
   Validators,
 } from '@angular/forms';
 
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'], // Sửa lỗi ở đây: 'styleUrl' => 'styleUrls'
+  styleUrl: './login.component.css',
 })
 export class LoginComponent {
-  authService = inject(AuthService);
-  router = inject(Router);
-
   loginForm: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [
@@ -27,20 +55,24 @@ export class LoginComponent {
     ]),
   });
 
-  handleLogin() {
-    console.log(this.loginForm);
+  authService = inject(AuthService);
+  router = inject(Router);
 
+  get email() {
+    return this.loginForm.get('email');
+  }
+
+  get password() {
+    return this.loginForm.get('password');
+  }
+
+  handleSubmit() {
     this.authService.loginUser(this.loginForm.value).subscribe({
       next: (data) => {
-        // Lưu token và vai trò vào auth service
-        this.authService.setAuth(data.token, data.role); // Lưu token và vai trò từ phản hồi
-
-        // Điều hướng dựa trên vai trò
-        if (this.authService.isUserAdmin()) {
-          this.router.navigateByUrl('/admin'); // Điều hướng đến trang admin nếu là admin
-        } else {
-          this.router.navigateByUrl('/'); // Điều hướng đến trang chính
-        }
+        console.log(data);
+        localStorage.setItem('user', JSON.stringify(data.user));
+        localStorage.setItem('token', data.accessToken);
+        this.router.navigateByUrl('');
       },
       error: () => alert('Error'),
     });
