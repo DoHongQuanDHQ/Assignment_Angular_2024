@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { of, Observable } from 'rxjs';
 
 export type User = {
   email: string;
@@ -29,8 +30,6 @@ export class AuthService {
     return this.http.post<LoginResponse>('http://localhost:3000/login', data);
   }
 
-  // Phương thức để lưu trữ token và vai trò người dùng
-
   // Phương thức để lấy token
 
   // Phương thức kiểm tra xem người dùng có phải là admin hay không
@@ -38,8 +37,13 @@ export class AuthService {
     const user = this.getUser();
     return this.userRole === 'admin'; // Kiểm tra vai trò
   }
+  // Phương thức để lưu trữ token và vai trò người dùng
   getUser(): any {
     return JSON.parse(localStorage.getItem('user') || '{}');
+  }
+
+  isLoggedIn(): Observable<boolean> {
+    return of(!!localStorage.getItem('user'));
   }
 
   // Phương thức để xóa thông tin xác thực khi người dùng đăng xuất

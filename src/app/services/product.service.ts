@@ -22,4 +22,19 @@ export class ProductService {
   getProductDetail(id: string) {
     return this.http.get<Product>(`http://localhost:3000/products/${id}`);
   }
+
+  createProduct(product: Product) {
+    return this.http.post(`http://localhost:3000/products/`, product);
+  }
+
+  updateProduct(product: Product) {
+    return this.http.patch(
+      `http://localhost:3000/products/${product.id}`,
+      product
+    );
+  }
+
+  deleteProduct(id: string | number | undefined) {
+    return this.http.delete(`http://localhost:3000/products/${id}`);
+  }
 }
